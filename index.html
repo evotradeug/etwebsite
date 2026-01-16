@@ -1,1119 +1,939 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>EVO TRADE // OPERATIONS</title>
 
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="EVO TRADE - Precision in Commerce. Streamlining operations and maximizing efficiency through data-driven market analysis and logistical optimization.">
+    <meta name="keywords" content="trade, commerce, logistics, market analysis, operations, efficiency">
+    <meta name="author" content="Evo Trade UG">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="EVO TRADE // OPERATIONS">
+    <meta property="og:description" content="Precision in Commerce. Streamlining operations and maximizing efficiency.">
+    <meta property="og:site_name" content="EVO TRADE">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EVO TRADE // OPERATIONS">
+    <meta name="twitter:description" content="Precision in Commerce. Streamlining operations and maximizing efficiency.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23030303' width='100' height='100'/><text y='.9em' x='50%' text-anchor='middle' font-size='80' fill='white' font-family='monospace'>E</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
-
-        /* --- EVO TRADE STYLE SYSTEM v2 --- */
-
-        
+        /* --- EVO TRADE STYLE SYSTEM v3 --- */
 
         :root {
-
             --bg-color: #030303;
-
             --surface-color: #0a0a0a;
-
-            --border-color: #2a2a2a;
-
+            --surface-hover: #111111;
+            --border-color: #1a1a1a;
+            --border-hover: #333333;
             --highlight-color: #ffffff;
-
             --text-primary: #e0e0e0;
-
-            --text-secondary: #888888;
-
-            --accent-blue: #333333; 
-
-            --font-main: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-
-            --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
-
+            --text-secondary: #666666;
+            --text-tertiary: #444444;
+            --glow-color: rgba(255, 255, 255, 0.1);
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
         }
-
-
 
         * {
-
             box-sizing: border-box;
-
+            margin: 0;
+            padding: 0;
         }
 
-
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-
             font-family: var(--font-main);
-
             background-color: var(--bg-color);
-
             color: var(--text-primary);
-
-            margin: 0;
-
-            padding: 0;
-
             line-height: 1.6;
-
             -webkit-font-smoothing: antialiased;
-
+            -moz-osx-font-smoothing: grayscale;
             display: flex;
-
             flex-direction: column;
-
             min-height: 100vh;
-
             overflow-x: hidden;
-
         }
-
-
 
         /* TECHNICAL GRID BACKGROUND */
-
         .grid-bg {
-
             position: fixed;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
-            background-image: 
-
+            background-image:
                 linear-gradient(var(--border-color) 1px, transparent 1px),
-
                 linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-
-            background-size: 60px 60px;
-
+            background-size: 80px 80px;
             background-position: center top;
-
-            opacity: 0.15;
-
+            opacity: 0.3;
             z-index: -1;
-
             pointer-events: none;
-
         }
 
-        
-
-        /* Grid Crosshairs for extra tech feel */
-
-        .grid-bg::after {
-
+        .grid-bg::before {
             content: "";
-
             position: absolute;
-
-            top: 0; left: 0; right: 0; bottom: 0;
-
-            background-image: radial-gradient(var(--text-secondary) 1px, transparent 1px);
-
-            background-size: 60px 60px;
-
-            background-position: -1px -1px; /* Align with grid intersections */
-
-            opacity: 0.1;
-
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 60%);
+            pointer-events: none;
         }
 
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
 
         /* TYPOGRAPHY */
-
         h1, h2, h3 {
-
             font-weight: 500;
-
-            margin: 0;
-
-            letter-spacing: -0.01em;
-
+            letter-spacing: -0.02em;
             color: var(--highlight-color);
-
         }
-
-
 
         h1 {
-
-            font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive sizing */
-
-            line-height: 1.1;
-
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 1.05;
             margin-bottom: 1.5rem;
-
+            font-weight: 600;
         }
 
+        h1 span.highlight {
+            display: inline-block;
+            position: relative;
+        }
 
+        h1 span.highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0.1em;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--highlight-color), transparent);
+        }
 
         h2 {
-
-            font-size: 1.5rem;
-
+            font-size: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 2rem;
-
             display: flex;
-
             align-items: center;
-
+            gap: 15px;
         }
-
-        
 
         h2::before {
-
             content: "//";
-
             font-family: var(--font-mono);
-
-            color: var(--text-secondary);
-
-            margin-right: 15px;
-
-            font-size: 1rem;
-
+            color: var(--text-tertiary);
+            font-size: 0.8em;
+            font-weight: 400;
         }
-
-
 
         p {
-
             color: var(--text-secondary);
-
-            font-size: 1.05rem;
-
-            max-width: 650px;
-
+            font-size: 1.1rem;
+            max-width: 600px;
             margin-bottom: 1.5rem;
-
+            line-height: 1.8;
         }
 
-        
+        p.large {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            opacity: 0.8;
+        }
 
         .mono-label {
-
             font-family: var(--font-mono);
-
-            font-size: 0.75rem;
-
+            font-size: 0.7rem;
             text-transform: uppercase;
-
-            letter-spacing: 2px;
-
-            color: var(--text-secondary);
-
-            display: block;
-
-            margin-bottom: 15px;
-
-            border-left: 1px solid var(--text-secondary);
-
-            padding-left: 10px;
-
+            letter-spacing: 3px;
+            color: var(--text-tertiary);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 8px 0;
         }
 
+        .mono-label::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--text-tertiary);
+        }
 
+        /* STATUS INDICATOR */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--surface-color);
+            margin-bottom: 30px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--highlight-color);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
 
         /* HEADER */
-
         header {
-
             border-bottom: 1px solid var(--border-color);
-
             padding: 20px 5%;
-
-            background: rgba(3, 3, 3, 0.85);
-
-            backdrop-filter: blur(8px);
-
+            background: rgba(3, 3, 3, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             position: sticky;
-
             top: 0;
-
             z-index: 1000;
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
+            animation: fadeIn 0.5s ease-out;
         }
-
-
 
         .logo {
-
             font-family: var(--font-mono);
-
-            font-size: 1.1rem;
-
+            font-size: 0.9rem;
             font-weight: 700;
-
-            letter-spacing: 3px;
-
+            letter-spacing: 4px;
             color: var(--highlight-color);
-
             text-decoration: none;
-
             cursor: pointer;
-
+            padding: 8px 12px;
             border: 1px solid transparent;
-
-            padding: 5px 10px;
-
-            transition: border-color 0.3s;
-
+            transition: all 0.3s ease;
+            position: relative;
         }
-
-        
 
         .logo:hover {
-
-            border-color: var(--border-color);
-
+            border-color: var(--border-hover);
+            background: var(--surface-color);
         }
 
+        .logo::before {
+            content: '[';
+            margin-right: 8px;
+            color: var(--text-tertiary);
+            transition: color 0.3s;
+        }
 
+        .logo::after {
+            content: ']';
+            margin-left: 8px;
+            color: var(--text-tertiary);
+            transition: color 0.3s;
+        }
+
+        .logo:hover::before,
+        .logo:hover::after {
+            color: var(--text-secondary);
+        }
 
         nav {
-
             display: flex;
-
-            gap: 30px;
-
+            gap: 40px;
         }
-
-
 
         .nav-item {
-
             font-family: var(--font-mono);
-
             color: var(--text-secondary);
-
             text-decoration: none;
-
-            font-size: 0.8rem;
-
+            font-size: 0.75rem;
             text-transform: uppercase;
-
-            letter-spacing: 1px;
-
+            letter-spacing: 2px;
             cursor: pointer;
-
-            transition: color 0.2s;
-
+            transition: color 0.3s;
             position: relative;
-
+            padding: 5px 0;
         }
-
-
 
         .nav-item:hover {
-
             color: var(--highlight-color);
-
         }
-
-        
 
         .nav-item::after {
-
             content: '';
-
             position: absolute;
-
             width: 0;
-
             height: 1px;
-
-            bottom: -5px;
-
-            left: 0;
-
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             background-color: var(--highlight-color);
-
-            transition: width 0.3s;
-
+            transition: width 0.3s ease;
         }
-
-        
 
         .nav-item:hover::after {
-
             width: 100%;
-
         }
-
-
 
         /* MAIN LAYOUT */
-
         main {
-
             flex: 1;
-
             display: flex;
-
             flex-direction: column;
-
         }
-
-
 
         /* SECTIONS */
-
         .section-container {
-
-            padding: 100px 5%;
-
+            padding: 120px 5%;
             border-bottom: 1px solid var(--border-color);
-
             position: relative;
-
         }
-
-
 
         .hero-section {
-
-            min-height: 85vh;
-
+            min-height: calc(100vh - 80px);
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
-
             align-items: flex-start;
-
+            padding-top: 60px;
+            padding-bottom: 60px;
         }
 
-
-
+        /* CTA BUTTON */
         .btn {
-
             display: inline-flex;
-
             align-items: center;
-
-            border: 1px solid var(--border-color);
-
+            gap: 12px;
+            border: 1px solid var(--border-hover);
             color: var(--highlight-color);
-
-            padding: 12px 28px;
-
+            padding: 16px 32px;
             font-family: var(--font-mono);
-
             font-size: 0.8rem;
-
             text-decoration: none;
-
-            margin-top: 30px;
-
-            transition: all 0.3s ease;
-
-            background: rgba(255, 255, 255, 0.03);
-
+            margin-top: 40px;
+            transition: all 0.4s ease;
+            background: var(--surface-color);
             text-transform: uppercase;
-
-            letter-spacing: 1px;
-
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
         }
-
-
-
-        .btn:hover {
-
-            border-color: var(--highlight-color);
-
-            background: rgba(255, 255, 255, 0.1);
-
-        }
-
-        
 
         .btn::before {
-
-            content: "[ ";
-
-            margin-right: 5px;
-
-            opacity: 0.5;
-
-            transition: opacity 0.3s;
-
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
         }
 
-        .btn::after {
-
-            content: " ]";
-
-            margin-left: 5px;
-
-            opacity: 0.5;
-
-            transition: opacity 0.3s;
-
+        .btn:hover::before {
+            left: 100%;
         }
 
-        .btn:hover::before, .btn:hover::after {
-
-            opacity: 1;
-
+        .btn:hover {
+            border-color: var(--highlight-color);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
+        .btn-icon {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
 
+        .btn:hover .btn-icon {
+            transform: translateX(4px);
+        }
 
         /* CAPABILITIES GRID */
+        .capabilities-header {
+            margin-bottom: 60px;
+        }
 
         .grid-3 {
-
             display: grid;
-
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
-            gap: 1px; /* Gap for border effect */
-
-            background-color: var(--border-color); /* Creates the borders */
-
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1px;
+            background-color: var(--border-color);
             border: 1px solid var(--border-color);
-
-            margin-top: 40px;
-
         }
-
-
 
         .capability-card {
-
             background: var(--bg-color);
-
-            padding: 40px 30px;
-
-            transition: background 0.3s;
-
+            padding: 50px 40px;
+            transition: all 0.4s ease;
             position: relative;
-
+            overflow: hidden;
         }
-
-
-
-        .capability-card:hover {
-
-            background: var(--surface-color);
-
-        }
-
-        
-
-        /* Corner accent on hover */
 
         .capability-card::before {
-
             content: "";
-
             position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--highlight-color), transparent);
+            transition: width 0.5s ease;
+        }
 
-            top: 0; left: 0;
+        .capability-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 0;
+            background: linear-gradient(180deg, var(--highlight-color), transparent);
+            transition: height 0.5s ease 0.1s;
+        }
 
-            width: 0; height: 1px;
-
-            background: var(--highlight-color);
-
-            transition: width 0.4s ease;
-
+        .capability-card:hover {
+            background: var(--surface-color);
         }
 
         .capability-card:hover::before {
-
-            width: 40px;
-
+            width: 60px;
         }
 
-
-
-        .capability-card h3 {
-
-            font-size: 1.1rem;
-
-            margin-bottom: 15px;
-
-            font-weight: 600;
-
+        .capability-card:hover::after {
+            height: 60px;
         }
 
-        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 24px;
+            opacity: 0.7;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .capability-card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.1);
+        }
 
         .card-number {
-
             font-family: var(--font-mono);
-
-            color: var(--text-secondary);
-
-            font-size: 0.8rem;
-
+            color: var(--text-tertiary);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
             margin-bottom: 20px;
-
             display: block;
-
-            opacity: 0.5;
-
         }
 
-
+        .capability-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
 
         .capability-card p {
-
             font-size: 0.95rem;
-
             margin: 0;
-
-            opacity: 0.8;
-
-            line-height: 1.7;
-
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
 
+        /* APPROACH SECTION */
+        .approach-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
 
+        .approach-text p {
+            margin-bottom: 2rem;
+        }
 
-        /* LEGAL PAGES (Hidden by default) */
+        .approach-visual {
+            position: relative;
+            height: 300px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface-color);
+        }
 
+        .approach-visual::before {
+            content: 'EFFICIENCY > COMPLEXITY';
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: var(--text-tertiary);
+        }
+
+        /* LEGAL PAGES */
         .legal-page {
-
             display: none;
-
-            padding: 80px 5%;
-
+            padding: 100px 5%;
             max-width: 900px;
-
             margin: 0 auto;
-
-            border-left: 1px solid var(--border-color);
-
-            border-right: 1px solid var(--border-color);
-
             min-height: 80vh;
-
         }
-
-
 
         .legal-page.active {
-
             display: block;
-
-            animation: fadeIn 0.3s ease-out;
-
+            animation: fadeInUp 0.4s ease-out;
         }
 
-        
-
-        @keyframes fadeIn {
-
-            from { opacity: 0; transform: translateY(10px); }
-
-            to { opacity: 1; transform: translateY(0); }
-
+        .legal-page h2 {
+            margin-bottom: 3rem;
         }
 
+        .legal-page h3 {
+            font-size: 1.1rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
 
+        .legal-page p {
+            max-width: 100%;
+        }
 
         /* FOOTER */
-
         footer {
-
-            padding: 60px 5%;
-
+            padding: 80px 5%;
             background: var(--bg-color);
-
             border-top: 1px solid var(--border-color);
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: flex-end;
-
             flex-wrap: wrap;
-
             gap: 40px;
-
         }
-
-
 
         .footer-col {
-
             display: flex;
-
             flex-direction: column;
-
             gap: 12px;
-
         }
-
-
 
         .footer-col h4 {
-
             font-family: var(--font-mono);
-
-            font-size: 0.7rem;
-
-            color: var(--text-secondary);
-
-            margin: 0 0 5px 0;
-
+            font-size: 0.65rem;
+            color: var(--text-tertiary);
+            margin: 0 0 8px 0;
             text-transform: uppercase;
-
-            letter-spacing: 1px;
-
+            letter-spacing: 3px;
         }
 
+        .footer-brand {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--highlight-color);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
 
+        .footer-copyright {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+        }
 
         .footer-link {
-
-            color: var(--text-primary);
-
+            color: var(--text-secondary);
             text-decoration: none;
-
             font-size: 0.85rem;
-
-            transition: color 0.2s;
-
+            transition: color 0.3s;
             cursor: pointer;
-
             font-family: var(--font-mono);
-
+            letter-spacing: 1px;
         }
-
-
 
         .footer-link:hover {
-
             color: var(--highlight-color);
-
-            text-decoration: underline;
-
         }
 
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
 
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .approach-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
 
-        @media (max-width: 768px) {
-
-            h1 { font-size: 2.2rem; }
-
-            header { padding: 15px 20px; }
-
-            .section-container { padding: 60px 20px; }
-
-            footer { flex-direction: column; align-items: flex-start; }
-
-            .grid-bg { background-size: 40px 40px; }
-
+            .approach-visual {
+                height: 200px;
+            }
         }
 
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            header { padding: 15px 20px; }
+            nav { gap: 20px; }
+            .nav-item { font-size: 0.7rem; letter-spacing: 1px; }
+            .section-container { padding: 80px 20px; }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 60px 20px;
+            }
+            .footer-links { flex-direction: column; gap: 15px; }
+            .grid-bg { background-size: 50px 50px; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .capability-card { padding: 40px 30px; }
+            .btn { width: 100%; justify-content: center; }
+        }
 
-
+        /* Custom selection color */
+        ::selection {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--highlight-color);
+        }
     </style>
-
 </head>
 
 <body>
 
-
-
     <div class="grid-bg"></div>
 
-
-
     <!-- HEADER -->
-
     <header>
-
         <div class="logo" onclick="showHome()">EVO TRADE</div>
-
         <nav>
-
             <a class="nav-item" onclick="scrollToSection('approach')">Approach</a>
-
             <a class="nav-item" onclick="scrollToSection('capabilities')">Systems</a>
-
         </nav>
-
     </header>
-
-
 
     <main id="main-content">
 
-        
-
         <!-- HOME PAGE CONTENT -->
-
         <div id="home-view">
 
-            
-
             <!-- Hero -->
-
             <section class="section-container hero-section">
-
-                <span class="mono-label">System Status: Operational</span>
-
-                <h1>Precision in <br>Commerce.</h1>
-
-                <p>Streamlining operations and maximizing efficiency. We build focused pathways for trade, removing friction and executing with clarity.</p>
-
-                <a href="mailto:info@evo-trade.de" class="btn">Connect</a>
-
+                <div class="status-indicator animate-fade-up delay-1">
+                    <span class="status-dot"></span>
+                    System Status: Operational
+                </div>
+                <h1 class="animate-fade-up delay-2">Precision in<br><span class="highlight">Commerce.</span></h1>
+                <p class="large animate-fade-up delay-3">Streamlining operations and maximizing efficiency. We build focused pathways for trade, removing friction and executing with clarity.</p>
+                <a href="mailto:info@evo-trade.de" class="btn animate-fade-up delay-4">
+                    Connect
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
             </section>
-
-
 
             <!-- Mission/Approach Section -->
-
             <section id="approach" class="section-container">
-
-                <span class="mono-label">01 // The Approach</span>
-
-                <h2>Efficiency is the Advantage.</h2>
-
-                <p>The modern marketplace is noisy. We apply rigorous logic to trade. Our work is not about size; it is about the intelligent application of resources.</p>
-
-                <p>We operate where supply meets demand, ensuring that value is not just created, but captured and delivered without unnecessary complexity.</p>
-
+                <span class="mono-label reveal">01 // The Approach</span>
+                <h2 class="reveal">Efficiency is the Advantage.</h2>
+                <div class="approach-content">
+                    <div class="approach-text">
+                        <p class="reveal">The modern marketplace is noisy. We apply rigorous logic to trade. Our work is not about size; it is about the intelligent application of resources.</p>
+                        <p class="reveal">We operate where supply meets demand, ensuring that value is not just created, but captured and delivered without unnecessary complexity.</p>
+                    </div>
+                    <div class="approach-visual reveal"></div>
+                </div>
             </section>
-
-
 
             <!-- Capabilities Section -->
-
             <section id="capabilities" class="section-container">
-
-                <span class="mono-label">02 // Operational Systems</span>
-
-                <h2>Core Capabilities</h2>
-
-                <div class="grid-3">
-
-                    <div class="capability-card">
-
-                        <span class="card-number">SYS_01</span>
-
-                        <h3>Market Analysis</h3>
-
-                        <p>Data-driven evaluation of market conditions. We identify opportunities with precision, avoiding speculation in favor of calculation.</p>
-
-                    </div>
-
-                    <div class="capability-card">
-
-                        <span class="card-number">SYS_02</span>
-
-                        <h3>Logistical Logic</h3>
-
-                        <p>Structuring the movement of goods to minimize latency. We design distribution workflows that are resilient and direct.</p>
-
-                    </div>
-
-                    <div class="capability-card">
-
-                        <span class="card-number">SYS_03</span>
-
-                        <h3>Brand Alignment</h3>
-
-                        <p>Ensuring product identity connects effectively with the intended audience. No wasted signals, just clear communication.</p>
-
-                    </div>
-
+                <div class="capabilities-header">
+                    <span class="mono-label reveal">02 // Operational Systems</span>
+                    <h2 class="reveal">Core Capabilities</h2>
                 </div>
-
+                <div class="grid-3 reveal">
+                    <div class="capability-card">
+                        <!-- Chart/Analytics Icon -->
+                        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="4" y="4" width="40" height="40" rx="2"/>
+                            <path d="M12 32l8-10 8 6 8-12"/>
+                            <circle cx="12" cy="32" r="2" fill="currentColor"/>
+                            <circle cx="20" cy="22" r="2" fill="currentColor"/>
+                            <circle cx="28" cy="28" r="2" fill="currentColor"/>
+                            <circle cx="36" cy="16" r="2" fill="currentColor"/>
+                        </svg>
+                        <span class="card-number">SYS_01</span>
+                        <h3>Market Analysis</h3>
+                        <p>Data-driven evaluation of market conditions. We identify opportunities with precision, avoiding speculation in favor of calculation.</p>
+                    </div>
+                    <div class="capability-card">
+                        <!-- Logistics/Network Icon -->
+                        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="24" cy="8" r="4"/>
+                            <circle cx="8" cy="40" r="4"/>
+                            <circle cx="40" cy="40" r="4"/>
+                            <circle cx="24" cy="28" r="3"/>
+                            <path d="M24 12v13M21 28l-10 9M27 28l10 9"/>
+                        </svg>
+                        <span class="card-number">SYS_02</span>
+                        <h3>Logistical Logic</h3>
+                        <p>Structuring the movement of goods to minimize latency. We design distribution workflows that are resilient and direct.</p>
+                    </div>
+                    <div class="capability-card">
+                        <!-- Target/Alignment Icon -->
+                        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="24" cy="24" r="20"/>
+                            <circle cx="24" cy="24" r="12"/>
+                            <circle cx="24" cy="24" r="4"/>
+                            <path d="M24 4v8M24 36v8M4 24h8M36 24h8"/>
+                        </svg>
+                        <span class="card-number">SYS_03</span>
+                        <h3>Brand Alignment</h3>
+                        <p>Ensuring product identity connects effectively with the intended audience. No wasted signals, just clear communication.</p>
+                    </div>
+                </div>
             </section>
-
         </div>
 
-
-
-        <!-- IMPRESSUM VIEW (Hidden by default) -->
-
+        <!-- IMPRESSUM VIEW -->
         <div id="impressum-view" class="legal-page">
-
             <h2>Impressum</h2>
-
-            <p style="margin-top: 2rem;"><strong>Angaben gemäß § 5 TMG</strong></p>
-
-            
+            <p><strong>Angaben gemäß § 5 TMG</strong></p>
 
             <p>
-
                 Evo Trade UG (haftungsbeschränkt)<br>
-
                 Annabergstraße 108<br>
-
                 45721 Haltern am See, Germany
-
             </p>
 
-
-
             <p>
-
                 <strong>Represented by:</strong><br>
-
                 Nick Laue
-
             </p>
 
-
-
             <p>
-
                 <strong>Contact:</strong><br>
-
                 Telephone: +49 160 93910855<br>
-
                 Email: info@evo-trade.de
-
             </p>
 
-
-
             <p>
-
                 <strong>Register:</strong><br>
-
                 Registration in the registry court: Amtsgericht Gelsenkirchen<br>
-
                 Registration number: HRB 18533
-
             </p>
-
-
 
             <p>
-
                 <strong>VAT-ID:</strong><br>
-
                 Sales tax identification number according to §27a Value Added Tax Act:<br>
-
                 DE369773249
-
             </p>
-
         </div>
 
-
-
-        <!-- DATENSCHUTZ VIEW (Hidden by default) -->
-
+        <!-- DATENSCHUTZ VIEW -->
         <div id="datenschutz-view" class="legal-page">
-
             <h2>Datenschutzerklärung</h2>
 
-            
-
-            <h3 style="margin-top: 30px; font-size: 1.2rem;">1. Datenschutz auf einen Blick</h3>
-
+            <h3>1. Datenschutz auf einen Blick</h3>
             <p><strong>Allgemeine Hinweise</strong><br>
-
             Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
 
-            
-
             <p><strong>Datenerfassung auf dieser Website</strong><br>
-
             <strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong><br>
-
-            Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur verantwortlichen Stelle“ in dieser Datenschutzerklärung entnehmen.</p>
-
-            
+            Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur verantwortlichen Stelle" in dieser Datenschutzerklärung entnehmen.</p>
 
             <p><strong>Wie erfassen wir Ihre Daten?</strong><br>
-
             Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben oder uns per E-Mail senden. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst.</p>
 
-            
-
-            <h3 style="margin-top: 30px; font-size: 1.2rem;">2. Hosting</h3>
-
+            <h3>2. Hosting</h3>
             <p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter:</p>
-
             <p><strong>Hostinger</strong><br>
-
             Anbieter ist die Hostinger International Ltd., 61 Lordou Vironos Street, 6023 Larnaca, Cyprus.</p>
-
             <p><strong>Externes Hosting</strong><br>
-
             Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert.</p>
-
             <p><strong>Auftragsverarbeitung</strong><br>
-
             Wir haben einen Vertrag über Auftragsverarbeitung (AVV) zur Nutzung des oben genannten Dienstes geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag.</p>
 
-            
-
-            <h3 style="margin-top: 30px; font-size: 1.2rem;">3. Allgemeine Hinweise</h3>
-
+            <h3>3. Allgemeine Hinweise</h3>
             <p><strong>Hinweis zur verantwortlichen Stelle</strong><br>
-
             Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
-
             <p>
-
                 Evo Trade UG (haftungsbeschränkt)<br>
-
                 Annabergstraße 108<br>
-
                 45721 Haltern am See
-
             </p>
-
             <p>
-
                 E-Mail: info@evo-trade.de
-
             </p>
-
-            
 
             <p><strong>SSL- bzw. TLS-Verschlüsselung</strong><br>
-
             Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung.</p>
 
-            
-
             <p><strong>Cookies</strong><br>
-
-            Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Datenpakete und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert.</p>
-
+            Unsere Internetseiten verwenden so genannte „Cookies". Cookies sind kleine Datenpakete und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert.</p>
         </div>
-
-
 
     </main>
 
-
-
-    <!-- FOOTER: Where the legal links live -->
-
+    <!-- FOOTER -->
     <footer>
-
         <div class="footer-col">
-
-            <h4>Evo Trade UG</h4>
-
-            <!-- Dynamic Copyright Year -->
-
-            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #555;">&copy; <span id="copyright-year"></span> Systems Operational.</span>
-
+            <span class="footer-brand">EVO TRADE</span>
+            <span class="footer-copyright">&copy; <span id="copyright-year"></span> All systems operational.</span>
         </div>
 
-        
-
         <div class="footer-col">
-
-            <h4>Legal Protocol</h4>
-
-            <a class="footer-link" onclick="showLegal('impressum')">Impressum</a>
-
-            <a class="footer-link" onclick="showLegal('datenschutz')">Datenschutz</a>
-
+            <h4>Legal</h4>
+            <div class="footer-links">
+                <a class="footer-link" onclick="showLegal('impressum')">Impressum</a>
+                <a class="footer-link" onclick="showLegal('datenschutz')">Datenschutz</a>
+            </div>
         </div>
-
     </footer>
 
-
-
     <script>
-
-        // Set the copyright year automatically
-
+        // Set the copyright year
         document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
 
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 100;
 
-        // Simple Single-Page-Application Logic
-
-        function showHome() {
-
-            document.getElementById('home-view').style.display = 'block';
-
-            document.getElementById('impressum-view').classList.remove('active');
-
-            document.getElementById('datenschutz-view').classList.remove('active');
-
-            window.scrollTo(0,0);
-
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('visible');
+                }
+            });
         }
 
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
 
+        // SPA Navigation
+        function showHome() {
+            document.getElementById('home-view').style.display = 'block';
+            document.getElementById('impressum-view').classList.remove('active');
+            document.getElementById('datenschutz-view').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         function showLegal(type) {
-
-            // Hide Home
-
             document.getElementById('home-view').style.display = 'none';
-
-            
-
-            // Hide both legal pages first
-
             document.getElementById('impressum-view').classList.remove('active');
-
             document.getElementById('datenschutz-view').classList.remove('active');
-
-
-
-            // Show requested page
-
             document.getElementById(type + '-view').classList.add('active');
-
-            window.scrollTo(0,0);
-
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-
 
         function scrollToSection(id) {
-
-            // Ensure we are on home view first
-
             showHome();
-
-            // Wait a tick for display:block to apply, then scroll
-
             setTimeout(() => {
-
                 const element = document.getElementById(id);
-
-                if(element) element.scrollIntoView({behavior: 'smooth'});
-
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }, 10);
-
         }
-
     </script>
-
 </body>
-
 </html>
