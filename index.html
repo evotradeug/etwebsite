@@ -1,733 +1,349 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVO TRADE</title>
+    <title>EVO TRADE | Digital Ventures & E-Commerce</title>
 
-    <!-- SEO -->
-    <meta name="description" content="EVO TRADE - Precision in Commerce. Streamlining operations and maximizing efficiency through data-driven market analysis.">
-    <meta name="keywords" content="trade, commerce, logistics, market analysis, operations">
+    <meta name="description" content="Evo Trade - Digital ventures, e-commerce, and marketing solutions based in Germany.">
+    <meta name="robots" content="index, follow">
     <meta property="og:title" content="EVO TRADE">
-    <meta property="og:description" content="Precision in Commerce.">
+    <meta property="og:description" content="Digital Ventures & E-Commerce">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100'/><text y='.9em' x='50%' text-anchor='middle' font-size='70' fill='white' font-family='system-ui'>E</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23111' width='100' height='100' rx='12'/><text y='.88em' x='50%' text-anchor='middle' font-size='65' fill='white' font-family='system-ui' font-weight='600'>E</text></svg>">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-        *, *::before, *::after {
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
         :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
-            --gray-300: #d4d4d4;
-            --gray-400: #a3a3a3;
-            --gray-500: #737373;
-            --gray-600: #525252;
-            --gray-700: #404040;
-            --gray-800: #262626;
-            --gray-900: #171717;
-            --gray-950: #0a0a0a;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --bg: #fafafa;
+            --text: #111;
+            --text-muted: #666;
+            --text-light: #999;
+            --border: #e5e5e5;
+            --accent: #111;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-            background-color: var(--black);
-            color: var(--white);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-        }
-
-        ::selection {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        /* HEADER */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 24px 48px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: transparent;
-            transition: background 0.3s;
-        }
-
-        header.scrolled {
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--gray-900);
-        }
-
-        .logo {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--white);
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        nav {
-            display: flex;
-            gap: 48px;
-        }
-
-        .nav-link {
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--gray-400);
-            text-decoration: none;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .nav-link:hover {
-            color: var(--white);
-        }
-
-        /* HERO */
-        .hero {
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 0 48px;
-            position: relative;
         }
 
-        .hero-content {
-            max-width: 1400px;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 24px;
+            max-width: 600px;
+            margin: 0 auto;
             width: 100%;
         }
 
-        .hero-label {
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--gray-500);
-            margin-bottom: 32px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .hero-label::before {
-            content: '';
-            width: 32px;
-            height: 1px;
-            background: var(--gray-700);
-        }
-
-        .hero-title {
-            font-size: clamp(48px, 10vw, 140px);
-            font-weight: 500;
-            letter-spacing: -0.03em;
-            line-height: 0.95;
-            margin-bottom: 48px;
-            color: var(--white);
-        }
-
-        .hero-title span {
-            display: block;
-        }
-
-        .hero-title .outline {
-            -webkit-text-stroke: 1px var(--gray-600);
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-description {
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1.7;
-            color: var(--gray-400);
-            max-width: 480px;
-            margin-bottom: 48px;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 11px;
+        /* Logo */
+        .logo {
+            font-size: 13px;
             font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--black);
-            background: var(--white);
-            padding: 16px 32px;
-            text-decoration: none;
-            transition: all 0.3s;
+            margin-bottom: 48px;
+            color: var(--text);
         }
 
-        .hero-cta:hover {
-            background: var(--gray-200);
+        /* Hero */
+        .tagline {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: var(--text);
         }
 
-        .hero-cta svg {
-            width: 14px;
-            height: 14px;
-            transition: transform 0.3s;
+        .description {
+            font-size: 17px;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            max-width: 460px;
         }
 
-        .hero-cta:hover svg {
-            transform: translateX(4px);
-        }
-
-        .hero-coordinates {
-            position: absolute;
-            bottom: 48px;
-            right: 48px;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            color: var(--gray-700);
-            font-family: 'SF Mono', 'Fira Code', monospace;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 48px;
-            left: 48px;
+        /* Focus Areas */
+        .focus-areas {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .scroll-indicator span {
-            font-size: 9px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gray-600);
-            writing-mode: vertical-rl;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 48px;
-            background: linear-gradient(to bottom, var(--gray-600), transparent);
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 160px 48px;
-            border-top: 1px solid var(--gray-900);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 80px;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 12px;
+            margin-bottom: 48px;
         }
 
-        .section-label {
-            font-size: 10px;
+        .focus-tag {
+            font-size: 13px;
             font-weight: 500;
-            letter-spacing: 0.3em;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-muted);
+        }
+
+        /* Contact */
+        .contact {
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-label {
+            font-size: 12px;
+            font-weight: 500;
             text-transform: uppercase;
-            color: var(--gray-600);
-        }
-
-        .section-title {
-            font-size: clamp(32px, 5vw, 56px);
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            color: var(--white);
-            max-width: 600px;
-        }
-
-        .section-description {
-            font-size: 15px;
-            font-weight: 400;
-            line-height: 1.8;
-            color: var(--gray-400);
-            max-width: 420px;
-        }
-
-        /* APPROACH */
-        .approach-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 120px;
-            align-items: start;
-        }
-
-        .approach-text p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--gray-300);
-            margin-bottom: 32px;
-        }
-
-        .approach-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .approach-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-        }
-
-        .stat {
-            border-left: 1px solid var(--gray-800);
-            padding-left: 24px;
-        }
-
-        .stat-value {
-            font-size: 48px;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            color: var(--white);
-            line-height: 1;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
             margin-bottom: 8px;
         }
 
-        .stat-label {
-            font-size: 11px;
+        .contact-email {
+            font-size: 17px;
             font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--gray-500);
+            color: var(--text);
+            transition: opacity 0.2s;
         }
 
-        /* CAPABILITIES */
-        .capabilities-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border: 1px solid var(--gray-900);
+        .contact-email:hover {
+            opacity: 0.6;
         }
 
-        .capability {
-            padding: 48px;
-            border-right: 1px solid var(--gray-900);
-            transition: background 0.3s;
-        }
-
-        .capability:last-child {
-            border-right: none;
-        }
-
-        .capability:hover {
-            background: var(--gray-950);
-        }
-
-        .capability-number {
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            color: var(--gray-600);
-            margin-bottom: 32px;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-        }
-
-        .capability-title {
-            font-size: 20px;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .capability-description {
-            font-size: 14px;
-            line-height: 1.7;
-            color: var(--gray-500);
-        }
-
-        /* FOOTER */
+        /* Footer */
         footer {
-            padding: 48px;
-            border-top: 1px solid var(--gray-900);
+            padding: 24px;
+            border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
-        .footer-left {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .footer-brand {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--white);
-        }
-
-        .footer-copyright {
-            font-size: 11px;
-            color: var(--gray-600);
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-light);
         }
 
         .footer-links {
             display: flex;
-            gap: 32px;
+            gap: 24px;
         }
 
         .footer-link {
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--gray-500);
-            text-decoration: none;
-            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-muted);
             transition: color 0.2s;
         }
 
         .footer-link:hover {
-            color: var(--white);
+            color: var(--text);
         }
 
-        /* LEGAL PAGES */
+        /* Legal Pages */
         .legal-page {
             display: none;
-            min-height: 100vh;
-            padding: 160px 48px 80px;
-            max-width: 720px;
+            flex: 1;
+            padding: 80px 24px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .legal-page.active {
             display: block;
         }
 
-        .legal-page h2 {
-            font-size: 32px;
+        .legal-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
             font-weight: 500;
-            letter-spacing: -0.02em;
-            margin-bottom: 48px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            transition: color 0.2s;
+            cursor: pointer;
         }
 
-        .legal-page h3 {
-            font-size: 16px;
+        .legal-back:hover {
+            color: var(--text);
+        }
+
+        .legal-back svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .legal-page h1 {
+            font-size: 28px;
             font-weight: 600;
-            color: var(--white);
-            margin-top: 40px;
-            margin-bottom: 16px;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+
+        .legal-page h2 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-top: 32px;
+            margin-bottom: 12px;
         }
 
         .legal-page p {
-            font-size: 14px;
-            line-height: 1.8;
-            color: var(--gray-400);
+            font-size: 15px;
+            color: var(--text-muted);
             margin-bottom: 16px;
+            line-height: 1.7;
         }
 
         .legal-page p strong {
-            color: var(--gray-300);
+            color: var(--text);
+            font-weight: 500;
         }
 
-        /* ANIMATIONS */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .approach-content {
-                grid-template-columns: 1fr;
-                gap: 64px;
-            }
-
-            .capabilities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .capability {
-                border-right: none;
-                border-bottom: 1px solid var(--gray-900);
-            }
-
-            .capability:last-child {
-                border-bottom: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 20px 24px;
-            }
-
-            nav {
-                gap: 24px;
-            }
-
-            .hero {
-                padding: 0 24px;
-            }
-
-            .hero-title {
-                font-size: clamp(36px, 12vw, 72px);
-            }
-
-            .hero-coordinates,
-            .scroll-indicator {
-                display: none;
-            }
-
-            section {
-                padding: 80px 24px;
-            }
-
-            .section-header {
-                flex-direction: column;
-                margin-bottom: 48px;
-            }
-
-            .approach-stats {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .capability {
-                padding: 32px 24px;
-            }
-
+        /* Responsive */
+        @media (max-width: 480px) {
             footer {
-                padding: 32px 24px;
                 flex-direction: column;
-                gap: 24px;
                 align-items: flex-start;
-            }
-
-            .legal-page {
-                padding: 120px 24px 48px;
             }
         }
     </style>
 </head>
 
 <body>
-    <header id="header">
-        <div class="logo" onclick="showHome()">Evo Trade</div>
-        <nav>
-            <a class="nav-link" onclick="scrollToSection('approach')">Approach</a>
-            <a class="nav-link" onclick="scrollToSection('systems')">Systems</a>
-            <a class="nav-link" href="mailto:info@evo-trade.de">Contact</a>
-        </nav>
-    </header>
+    <!-- Home View -->
+    <main id="home-view">
+        <div class="logo">Evo Trade</div>
 
-    <main id="main-content">
-        <div id="home-view">
-            <!-- HERO -->
-            <section class="hero">
-                <div class="hero-content">
-                    <div class="hero-label animate delay-1">Operations</div>
-                    <h1 class="hero-title animate delay-2">
-                        <span>Precision</span>
-                        <span class="outline">in Commerce</span>
-                    </h1>
-                    <p class="hero-description animate delay-3">Streamlining operations and maximizing efficiency. We build focused pathways for trade, removing friction and executing with clarity.</p>
-                    <a href="mailto:info@evo-trade.de" class="hero-cta animate delay-4">
-                        Get in touch
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
+        <h1 class="tagline">Digital Ventures<br>& E-Commerce</h1>
 
-                <div class="scroll-indicator">
-                    <span>Scroll</span>
-                    <div class="scroll-line"></div>
-                </div>
+        <p class="description">We build and operate digital businesses. E-commerce, marketing, and affiliate solutions — based in Germany.</p>
 
-                <div class="hero-coordinates">51.7417° N, 7.1883° E</div>
-            </section>
-
-            <!-- APPROACH -->
-            <section id="approach">
-                <div class="section-header">
-                    <div>
-                        <div class="section-label">01 — Approach</div>
-                        <h2 class="section-title">Efficiency is the advantage</h2>
-                    </div>
-                    <p class="section-description">We apply rigorous logic to trade. Our work is about the intelligent application of resources.</p>
-                </div>
-
-                <div class="approach-content">
-                    <div class="approach-text">
-                        <p>The modern marketplace is noisy. We cut through complexity with precision, applying rigorous logic to every operation.</p>
-                        <p>We operate where supply meets demand, ensuring that value is not just created, but captured and delivered without unnecessary complexity.</p>
-                    </div>
-                    <div class="approach-stats">
-                        <div class="stat">
-                            <div class="stat-value">100%</div>
-                            <div class="stat-label">Operational Focus</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">24/7</div>
-                            <div class="stat-label">System Monitoring</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">DE</div>
-                            <div class="stat-label">Headquarters</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">∞</div>
-                            <div class="stat-label">Scalability</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SYSTEMS -->
-            <section id="systems">
-                <div class="section-header">
-                    <div>
-                        <div class="section-label">02 — Systems</div>
-                        <h2 class="section-title">Core capabilities</h2>
-                    </div>
-                </div>
-
-                <div class="capabilities-grid">
-                    <div class="capability">
-                        <div class="capability-number">SYS_01</div>
-                        <h3 class="capability-title">Market Analysis</h3>
-                        <p class="capability-description">Data-driven evaluation of market conditions. We identify opportunities with precision, avoiding speculation in favor of calculation.</p>
-                    </div>
-                    <div class="capability">
-                        <div class="capability-number">SYS_02</div>
-                        <h3 class="capability-title">Logistical Logic</h3>
-                        <p class="capability-description">Structuring the movement of goods to minimize latency. We design distribution workflows that are resilient and direct.</p>
-                    </div>
-                    <div class="capability">
-                        <div class="capability-number">SYS_03</div>
-                        <h3 class="capability-title">Brand Alignment</h3>
-                        <p class="capability-description">Ensuring product identity connects effectively with the intended audience. No wasted signals, just clear communication.</p>
-                    </div>
-                </div>
-            </section>
+        <div class="focus-areas">
+            <span class="focus-tag">E-Commerce</span>
+            <span class="focus-tag">Digital Marketing</span>
+            <span class="focus-tag">Affiliate</span>
+            <span class="focus-tag">Brand Development</span>
         </div>
 
-        <!-- IMPRESSUM -->
-        <div id="impressum-view" class="legal-page">
-            <h2>Impressum</h2>
-            <p><strong>Angaben gemäß § 5 TMG</strong></p>
-
-            <p>
-                Evo Trade UG (haftungsbeschränkt)<br>
-                Annabergstraße 108<br>
-                45721 Haltern am See, Germany
-            </p>
-
-            <p>
-                <strong>Represented by:</strong><br>
-                Nick Laue
-            </p>
-
-            <p>
-                <strong>Contact:</strong><br>
-                Telephone: +49 160 93910855<br>
-                Email: info@evo-trade.de
-            </p>
-
-            <p>
-                <strong>Register:</strong><br>
-                Registration in the registry court: Amtsgericht Gelsenkirchen<br>
-                Registration number: HRB 18533
-            </p>
-
-            <p>
-                <strong>VAT-ID:</strong><br>
-                Sales tax identification number according to §27a Value Added Tax Act:<br>
-                DE369773249
-            </p>
-        </div>
-
-        <!-- DATENSCHUTZ -->
-        <div id="datenschutz-view" class="legal-page">
-            <h2>Datenschutzerklärung</h2>
-
-            <h3>1. Datenschutz auf einen Blick</h3>
-            <p><strong>Allgemeine Hinweise</strong><br>
-            Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
-
-            <p><strong>Datenerfassung auf dieser Website</strong><br>
-            Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur verantwortlichen Stelle" in dieser Datenschutzerklärung entnehmen.</p>
-
-            <p><strong>Wie erfassen wir Ihre Daten?</strong><br>
-            Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst.</p>
-
-            <h3>2. Hosting</h3>
-            <p><strong>Hostinger</strong><br>
-            Anbieter ist die Hostinger International Ltd., 61 Lordou Vironos Street, 6023 Larnaca, Cyprus.</p>
-
-            <p>Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert.</p>
-
-            <h3>3. Verantwortliche Stelle</h3>
-            <p>
-                Evo Trade UG (haftungsbeschränkt)<br>
-                Annabergstraße 108<br>
-                45721 Haltern am See<br>
-                E-Mail: info@evo-trade.de
-            </p>
-
-            <p><strong>SSL-Verschlüsselung</strong><br>
-            Diese Seite nutzt aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung.</p>
-
-            <p><strong>Cookies</strong><br>
-            Unsere Internetseiten verwenden Cookies. Cookies sind kleine Datenpakete und richten auf Ihrem Endgerät keinen Schaden an.</p>
+        <div class="contact">
+            <div class="contact-label">Get in touch</div>
+            <a href="mailto:info@evo-trade.de" class="contact-email">info@evo-trade.de</a>
         </div>
     </main>
 
+    <!-- Impressum -->
+    <div id="impressum-view" class="legal-page">
+        <a class="legal-back" onclick="showHome()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back
+        </a>
+
+        <h1>Impressum</h1>
+
+        <p><strong>Angaben gemäß § 5 TMG</strong></p>
+
+        <p>
+            Evo Trade UG (haftungsbeschränkt)<br>
+            Annabergstraße 108<br>
+            45721 Haltern am See<br>
+            Germany
+        </p>
+
+        <h2>Vertreten durch</h2>
+        <p>Nick Laue</p>
+
+        <h2>Kontakt</h2>
+        <p>
+            Telefon: +49 160 93910855<br>
+            E-Mail: info@evo-trade.de
+        </p>
+
+        <h2>Registereintrag</h2>
+        <p>
+            Eintragung im Handelsregister<br>
+            Registergericht: Amtsgericht Gelsenkirchen<br>
+            Registernummer: HRB 18533
+        </p>
+
+        <h2>Umsatzsteuer-ID</h2>
+        <p>
+            Umsatzsteuer-Identifikationsnummer gemäß §27a Umsatzsteuergesetz:<br>
+            DE369773249
+        </p>
+    </div>
+
+    <!-- Datenschutz -->
+    <div id="datenschutz-view" class="legal-page">
+        <a class="legal-back" onclick="showHome()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back
+        </a>
+
+        <h1>Datenschutzerklärung</h1>
+
+        <h2>1. Datenschutz auf einen Blick</h2>
+        <p><strong>Allgemeine Hinweise</strong><br>
+        Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+
+        <p><strong>Datenerfassung auf dieser Website</strong><br>
+        Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Verantwortliche Stelle" in dieser Datenschutzerklärung entnehmen.</p>
+
+        <p><strong>Wie erfassen wir Ihre Daten?</strong><br>
+        Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen (z.B. per E-Mail). Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
+
+        <h2>2. Hosting</h2>
+        <p><strong>Externer Hosting-Anbieter</strong><br>
+        Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v.a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.</p>
+
+        <p>Anbieter: Hostinger International Ltd., 61 Lordou Vironos Street, 6023 Larnaca, Cyprus</p>
+
+        <h2>3. Verantwortliche Stelle</h2>
+        <p>
+            Evo Trade UG (haftungsbeschränkt)<br>
+            Annabergstraße 108<br>
+            45721 Haltern am See<br>
+            Germany<br><br>
+            E-Mail: info@evo-trade.de
+        </p>
+
+        <h2>4. SSL-Verschlüsselung</h2>
+        <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.</p>
+
+        <h2>5. Cookies</h2>
+        <p>Diese Website verwendet keine Tracking-Cookies. Es werden lediglich technisch notwendige Cookies eingesetzt, die für den Betrieb der Website erforderlich sind.</p>
+
+        <h2>6. Ihre Rechte</h2>
+        <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.</p>
+    </div>
+
     <footer>
-        <div class="footer-left">
-            <div class="footer-brand">Evo Trade</div>
-            <div class="footer-copyright">© <span id="year"></span> All rights reserved</div>
-        </div>
+        <div class="footer-copy">© <span id="year"></span> Evo Trade UG</div>
         <div class="footer-links">
             <a class="footer-link" onclick="showLegal('impressum')">Impressum</a>
             <a class="footer-link" onclick="showLegal('datenschutz')">Datenschutz</a>
@@ -737,18 +353,8 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
         function showHome() {
-            document.getElementById('home-view').style.display = 'block';
+            document.getElementById('home-view').style.display = 'flex';
             document.getElementById('impressum-view').classList.remove('active');
             document.getElementById('datenschutz-view').classList.remove('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -760,13 +366,6 @@
             document.getElementById('datenschutz-view').classList.remove('active');
             document.getElementById(type + '-view').classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function scrollToSection(id) {
-            showHome();
-            setTimeout(() => {
-                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-            }, 10);
         }
     </script>
 </body>
